@@ -8,9 +8,15 @@ yarn-debug.log*
 yarn-error.log*W
 .vscode
 
+# storage
+storage/*
+
 # secrets
-/storage
-/secrets
+secrets/*
+!secrets/.gitkeep
 
 # logs
 *.log
+
+# package-lock.json (will update in the near future)
+package-lock.json

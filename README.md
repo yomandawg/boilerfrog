@@ -70,6 +70,11 @@ npm run start:linux
 
 **[troubleshoot]** change `$npm_package_config_path_<OS_NAME>` to your own global node.js' Verdaccio path
 
+```bash
+# command to check the global `npm_modules` location
+npm root -g
+```
+
 ```json
 // package.json
 {
@@ -106,15 +111,30 @@ npm run create <package-name>
 npm adduser --registry $HOST
 ```
 
-## Environment requirements
-
-- node - `^10.16.0` _safe_
-- npm - `^6.9.0` _safe_
-
-## Integration
-
-### Lerna
+## Lerna
 
 > https://lerna.js.org/
 
-- mono-repo publish using lerna
+*publish as a mono-repo using lerna*
+
+available scripts (use at your own risk)
+
+```bash
+# initiation
+npm run lerna:init
+
+# hoisting pacakage dependencies
+npm run lerna:bootstrap
+
+# update versions
+npm run lerna:version
+
+# view diffs
+npm run lerna:diff
+```
+
+publish as a mono-repo
+
+```bash
+npm run publish:root
+```
