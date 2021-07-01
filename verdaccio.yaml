@@ -1,0 +1,27 @@
+storage: ./storage
+
+plugins: ./plugins
+
+web:
+  title: Verdaccio
+  darkMode: true
+
+listen:
+  - http://localhost:4873
+
+packages:
+  '**':
+    access: $all
+    publish: $authenticated
+
+auth:
+  htpasswd:
+    file: ./secrets/htpasswd
+    max_users: -1
+
+logs: { type: file, path: verdaccio.log, level: error }
+# notify:
+#   method: POST
+#   headers: [{'Content-Type': 'applcation/json'}]
+#   endpoint: SLACK_PATH
+#   content: '내용'

@@ -1,0 +1,22 @@
+{
+  "name": "@boilerfrog/eslint-config",
+  "version": "1.0.0",
+  "description": "custom eslint configuration",
+  "keywords": [
+    "eslint"
+  ],
+  "author": "yomandawg",
+  "homepage": "",
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}
