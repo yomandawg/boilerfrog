@@ -1,0 +1,36 @@
+{
+  "name": "boilerfrog",
+  "version": "0.0.0",
+  "author": "yomandawg",
+  "description": "node.js project boilerplate running on a mono-repo-like private package manager",
+  "license": "MIT",
+  "engines": {
+    "node": "14.17.1",
+    "npm": "6.14.13"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "preinstall": "npm install verdaccio lerna concurrently pm2 -g",
+    "clean": "rm -rf storage",
+    "create": "lerna create",
+    "start": "concurrently \"npm:start:local\" \"npm:publish-all\" --success",
+    "start:local": "verdaccio --config verdaccio-local.yaml",
+    "start:windows": "pm2 start %npm_package_config_path_windows%/verdaccio",
+    "start:mac": "pm2 start $npm_package_config_path_mac/verdaccio",
+    "start:linux": "pm2 start $npm_package_config_path_linux/verdaccio",
+    "publish-all": "npm run clean && node publish.js"
+  },
+  "config": {
+    "port": "4873",
+    "path": {
+      "windows": "C:/\"Program Files\"/nodejs/node_modules/verdaccio/bin",
+      "mac": "/usr/local/lib/node_modules/verdaccio/bin",
+      "linux": "/usr/local/lib/node_modules/verdaccio/bin"
+    }
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  }
+}

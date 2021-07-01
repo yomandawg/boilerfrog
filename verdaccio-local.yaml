@@ -1,0 +1,15 @@
+storage: ./storage
+
+plugins: ./plugins
+
+web:
+  title: Verdaccio
+  darkMode: true
+
+listen:
+  - http://localhost:4873
+
+packages:
+  '**':
+    access: $all
+    publish: $all
