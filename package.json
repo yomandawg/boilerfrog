@@ -1,13 +1,9 @@
 {
   "name": "boilerfrog",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "author": "yomandawg",
   "description": "node.js project boilerplate running on a mono-repo-like private package manager",
   "license": "MIT",
-  "engines": {
-    "node": "14.17.1",
-    "npm": "6.14.13"
-  },
   "workspaces": [
     "packages/*"
   ],
@@ -15,22 +11,30 @@
     "preinstall": "npm install verdaccio lerna concurrently pm2 -g",
     "clean": "rm -rf storage",
     "create": "lerna create",
-    "start": "concurrently \"npm:start:local\" \"npm:publish-all\" --success",
+    "start": "concurrently \"npm:start:local\" \"npm:publish:all\" --success",
     "start:local": "verdaccio --config verdaccio-local.yaml",
     "start:windows": "pm2 start %npm_package_config_path_windows%/verdaccio",
     "start:mac": "pm2 start $npm_package_config_path_mac/verdaccio",
     "start:linux": "pm2 start $npm_package_config_path_linux/verdaccio",
-    "publish-all": "npm run clean && node publish.js"
+    "publish:all": "npm run clean && node publish.js",
+    "publish:root": "npm publish --registry http://localhost:4873",
+    "lerna:init": "lerna init",
+    "lerna:bootstrap": "lerna bootstrap --hoist",
+    "lerna:version": "lerna version --conventional-commits --yes",
+    "lerna:diff": "lerna diff"
   },
   "config": {
     "port": "4873",
     "path": {
       "windows": "C:/\"Program Files\"/nodejs/node_modules/verdaccio/bin",
-      "mac": "/usr/local/lib/node_modules/verdaccio/bin",
+      "mac": "Users/<USERNAME>/.nvm/versions/node/<NODE_VERSION>/lib/node_modules/verdaccio/bin",
       "linux": "/usr/local/lib/node_modules/verdaccio/bin"
     }
   },
   "publishConfig": {
     "registry": "http://localhost:4873"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
   }
 }
